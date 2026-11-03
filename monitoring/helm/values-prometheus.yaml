@@ -1,0 +1,29 @@
+# ==============================================================================
+# Helm Values Overrides Guide (monitoring/helm/values-prometheus.yaml)
+# ==============================================================================
+# Customized values file for the 'kube-prometheus-stack' Helm chart.
+#
+# How Helm works:
+# Helm is a package manager for Kubernetes. The kube-prometheus-stack chart installs
+# Prometheus, Grafana, Alertmanager, and Node Exporter in one command.
+#
+# Settings to customize when writing this file:
+#
+# 1. Grafana configuration:
+#    grafana:
+#      enabled: true
+#      adminPassword: "ChooseAStrongPasswordHere"
+#      service:
+#        type: ClusterIP
+#
+# 2. Prometheus ServiceMonitor selector:
+#    prometheus:
+#      prometheusSpec:
+#        # Setting serviceMonitorSelectorNilUsesHelmValues to false tells Prometheus
+#        # to discover and scrape ANY ServiceMonitor across any namespace in the cluster!
+#        serviceMonitorSelectorNilUsesHelmValues: false
+#        retention: 7d # Store metric history for 7 days
+#
+# 3. Alertmanager (optional alerting rules router):
+#    alertmanager:
+#      enabled: true

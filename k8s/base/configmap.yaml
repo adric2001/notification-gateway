@@ -1,0 +1,17 @@
+# ==============================================================================
+# Kubernetes ConfigMap Guide (k8s/base/configmap.yaml)
+# ==============================================================================
+# ConfigMaps store non-confidential configuration key-value pairs.
+# Pods consume them as environment variables or mounted files.
+#
+# Structure to write:
+#
+# apiVersion: v1
+# kind: ConfigMap
+# metadata:
+#   name: gateway-config
+#   namespace: gateway
+# data:
+#   APP_NAME: "Telegram Notification Gateway"
+#   ENVIRONMENT: "production"
+#   LOG_LEVEL: "INFO"

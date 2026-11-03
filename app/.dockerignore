@@ -1,0 +1,37 @@
+# ==============================================================================
+# Docker Ignore (.dockerignore)
+# ==============================================================================
+# Files matching these patterns are excluded from the Docker build context.
+# Excluding unnecessary files significantly speeds up builds and prevents secrets
+# or caches from leaking into the container image.
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Local virtual environments
+venv/
+.venv/
+env/
+
+# Git metadata
+.git/
+.gitignore
+
+# Secrets and local config files
+.env
+.env.*
+*.pem
+*.key
+
+# Development docs and CI configs
+tests/
+Dockerfile
+.dockerignore
+requirements-dev.txt

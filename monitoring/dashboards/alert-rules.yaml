@@ -1,0 +1,37 @@
+# ==============================================================================
+# PrometheusRule Alerting Rules Guide (monitoring/dashboards/alert-rules.yaml)
+# ==============================================================================
+# PrometheusRule is a Kubernetes CRD that lets you define alerting thresholds in PromQL.
+# When an expression triggers (fires), Prometheus sends the alert to Alertmanager.
+#
+# Structure to write:
+#
+# apiVersion: monitoring.coreos.com/v1
+# kind: PrometheusRule
+# metadata:
+#   name: gateway-alert-rules
+#   namespace: gateway
+#   labels:
+#     release: prometheus
+# spec:
+#   groups:
+#     - name: NotificationGatewayAlerts
+#       rules:
+#         # Alert 1: High HTTP 5xx Error Rate
+#         - alert: GatewayHighErrorRate
+#           expr: sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) > 0.05
+#           for: 2m
+#           labels:
+#             severity: critical
+#           annotations:
+#             summary: "Notification Gateway HTTP 5xx error rate is above 5%"
+#             description: "More than 5% of requests to /notify failed in the last 5 minutes."
+#
+#         # Alert 2: High Latency (P95 > 2 seconds)
+#         - alert: GatewayHighLatency
+#           expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 2.0
+#           for: 5m
+#           labels:
+#             severity: warning
+#           annotations:
+#             summary: "Telegram delivery latency is unusually high"

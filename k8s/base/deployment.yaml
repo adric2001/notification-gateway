@@ -1,0 +1,62 @@
+# ==============================================================================
+# Kubernetes Deployment Guide (k8s/base/deployment.yaml)
+# ==============================================================================
+# A Deployment manages a set of identical Pod replicas, handling rolling updates,
+# restarts, and scaling.
+#
+# Key Sections to write:
+#
+# 1. API Version & Kind:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#
+# 2. Metadata:
+#    metadata:
+#      name: notification-gateway
+#      namespace: gateway
+#      labels:
+#        app: notification-gateway
+#
+# 3. Specification (spec):
+#    spec:
+#      replicas: 2 # Run 2 copies of your app for high availability
+#      selector:
+#        matchLabels:
+#          app: notification-gateway
+#      template:
+#        metadata:
+#          labels:
+#            app: notification-gateway
+#        spec:
+#          containers:
+#            - name: gateway
+#              image: ghcr.io/yourusername/notification-gateway:latest
+#              ports:
+#                - containerPort: 8000
+#                  name: http
+#              envFrom:
+#                - configMapRef:
+#                    name: gateway-config
+#                - secretRef:
+#                    name: gateway-secrets
+#              resources:
+#                requests:
+#                  cpu: "50m"
+#                  memory: "64Mi"
+#                limits:
+#                  cpu: "200m"
+#                  memory: "128Mi"
+#              # Probes tell Kubernetes when to restart a crashed pod (liveness)
+#              # or when it is ready to receive traffic (readiness)
+#              livenessProbe:
+#                httpGet:
+#                  path: /healthz
+#                  port: 8000
+#                initialDelaySeconds: 5
+#                periodSeconds: 15
+#              readinessProbe:
+#                httpGet:
+#                  path: /healthz
+#                  port: 8000
+#                initialDelaySeconds: 3
+#                periodSeconds: 10

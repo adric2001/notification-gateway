@@ -1,0 +1,33 @@
+# ==============================================================================
+# K3s Kubernetes Role Tasks Guide (ansible/roles/k3s/tasks/main.yml)
+# ==============================================================================
+# K3s is a lightweight, fully certified Kubernetes distribution packaged as a single
+# binary. It uses less than 512MB RAM, making it perfect for small servers and learning.
+#
+# Tasks to write:
+#
+# 1. Download and run the official K3s installation script:
+#    - name: Download and install K3s
+#      ansible.builtin.shell: |
+#        curl -sfL https://get.k3s.io | INSTALL_K3S_VERSION="{{ k3s_version }}" sh -s - \
+#          --write-kubeconfig-mode 644 \
+#          --tls-san {{ ansible_host }}
+#      args:
+#        creates: /usr/local/bin/k3s  # Only run if k3s is not already installed!
+#
+# 2. Verify K3s systemd service is active:
+#    - name: Ensure k3s service is running
+#      ansible.builtin.systemd:
+#        name: k3s
+#        state: started
+#        enabled: yes
+#
+# 3. Fetch the kubeconfig file to your local computer:
+#    - name: Copy kubeconfig to local development machine
+#      ansible.builtin.fetch:
+#        src: /etc/rancher/k3s/k3s.yaml
+#        dest: "~/.kube/config-k3s-gateway"
+#        flat: yes
+#
+# 4. Tip: Replace the loopback IP (127.0.0.1) in your local kubeconfig with the
+#    server's public IP so you can run `kubectl` directly from your laptop!

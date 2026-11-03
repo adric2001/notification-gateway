@@ -1,0 +1,21 @@
+# ==============================================================================
+# Production Runtime Dependencies Guide (app/requirements.txt)
+# ==============================================================================
+# Add your runtime dependencies here. For a simple Telegram webhook gateway,
+# you only need:
+#
+# 1. Web framework:
+#    fastapi>=0.110.0,<1.0.0
+#
+# 2. Lightning-fast ASGI web server:
+#    uvicorn[standard]>=0.28.0,<1.0.0
+#
+# 3. Environment configuration & data validation:
+#    pydantic>=2.6.0,<3.0.0
+#    pydantic-settings>=2.2.0,<3.0.0
+#
+# 4. Asynchronous HTTP client to call Telegram Bot API:
+#    httpx>=0.27.0,<1.0.0
+#
+# 5. Prometheus metrics exporter (optional for monitoring):
+#    prometheus-fastapi-instrumentator>=7.0.0,<8.0.0

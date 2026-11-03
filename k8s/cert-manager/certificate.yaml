@@ -1,0 +1,20 @@
+# ==============================================================================
+# TLS Certificate Definition Guide (k8s/cert-manager/certificate.yaml)
+# ==============================================================================
+# A Certificate resource tells cert-manager to obtain and continuously renew
+# a TLS certificate for your domain name.
+#
+# Structure to write:
+#
+# apiVersion: cert-manager.io/v1
+# kind: Certificate
+# metadata:
+#   name: gateway-tls-certificate
+#   namespace: gateway
+# spec:
+#   secretName: gateway-tls-cert
+#   issuerRef:
+#     name: letsencrypt-prod
+#     kind: ClusterIssuer
+#   dnsNames:
+#     - notify.yourdomain.com

@@ -1,0 +1,31 @@
+{
+  "__comment__": "Grafana Dashboard Model Guide for Notification Gateway",
+  "title": "Notification Gateway Metrics",
+  "tags": ["notification-gateway", "fastapi"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "refresh": "10s",
+  "panels": [
+    {
+      "title": "Request Throughput (RPS)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "description": "PromQL Query to write: sum(rate(http_requests_total{app='notification-gateway'}[2m])) by (handler)",
+      "targets": []
+    },
+    {
+      "title": "HTTP Error Rate (4xx / 5xx)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "description": "PromQL Query to write: sum(rate(http_requests_total{status=~'5..'}[2m])) / sum(rate(http_requests_total[2m])) * 100",
+      "targets": []
+    },
+    {
+      "title": "P95 Request Latency",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "description": "PromQL Query to write: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+      "targets": []
+    }
+  ]
+}

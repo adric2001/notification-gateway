@@ -1,0 +1,33 @@
+# ==============================================================================
+# Kubernetes Ingress Guide (k8s/base/ingress.yaml)
+# ==============================================================================
+# An Ingress exposes HTTP and HTTPS routes from outside the cluster to services
+# within the cluster. It also handles automatic TLS termination with Let's Encrypt!
+#
+# Structure to write:
+#
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: gateway-ingress
+#   namespace: gateway
+#   annotations:
+#     # Tells cert-manager to automatically generate an SSL cert with Let's Encrypt
+#     cert-manager.io/cluster-issuer: "letsencrypt-prod"
+#     kubernetes.io/ingress.class: "nginx" # or "traefik" if using K3s default
+# spec:
+#   tls:
+#     - hosts:
+#         - notify.yourdomain.com
+#       secretName: gateway-tls-cert # cert-manager stores the generated TLS cert here
+#   rules:
+#     - host: notify.yourdomain.com
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: notification-gateway-service
+#                 port:
+#                   number: 8000

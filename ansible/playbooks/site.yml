@@ -1,0 +1,22 @@
+# ==============================================================================
+# Master Orchestration Playbook Guide (ansible/playbooks/site.yml)
+# ==============================================================================
+# An Ansible playbook is an ordered list of plays to configure your servers.
+#
+# Steps to write this playbook:
+#
+# ---
+# - name: Provision Notification Gateway Server
+#   hosts: gateway_nodes   # Defined in inventory/hosts.ini
+#   become: true           # Execute tasks as root (sudo)
+#   gather_facts: true     # Gathers OS and network information
+#
+#   roles:
+#     # Role 1: Base OS packages, firewall (UFW), and intrusion prevention (fail2ban)
+#     - role: common
+#
+#     # Role 2: Container engine and containerd installation
+#     - role: docker
+#
+#     # Role 3: Lightweight Kubernetes (K3s) setup and kubeconfig retrieval
+#     - role: k3s

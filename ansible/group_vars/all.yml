@@ -1,0 +1,27 @@
+# ==============================================================================
+# Node-Wide Configuration Variables (ansible/group_vars/all.yml)
+# ==============================================================================
+# Variables in 'group_vars/all.yml' are automatically accessible to all plays
+# and roles running against any host in the inventory.
+
+# Server timezone
+timezone: "UTC"
+
+# System packages to ensure are installed across all machines
+common_packages:
+  - curl
+  - wget
+  - git
+  - ufw
+  - fail2ban
+  - htop
+  - ca-certificates
+  - gnupg
+
+# K3s Kubernetes version to install (lightweight certified Kubernetes distribution)
+# Reference releases: https://github.com/k3s-io/k3s/releases
+k3s_version: "v1.28.7+k3s1"
+
+# Domain name where your webhook gateway will be accessible
+# (Used for ingress and Let's Encrypt SSL certificates)
+domain_name: "notify.yourdomain.com"

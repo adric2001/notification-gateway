@@ -1,0 +1,32 @@
+# ==============================================================================
+# Dependabot Configuration Guide (.github/dependabot.yml)
+# ==============================================================================
+# Dependabot automatically scans your repository for outdated or insecure packages
+# and creates Pull Requests with version bumps.
+#
+# Steps to write this configuration:
+#
+# 1. Specify the configuration file version:
+#    version: 2
+#
+# 2. Add updates list with target package ecosystems:
+#    updates:
+#
+#      # Check Python pip packages in /app weekly:
+#      - package-ecosystem: "pip"
+#        directory: "/app"
+#        schedule:
+#          interval: "weekly"
+#        open-pull-requests-limit: 5
+#
+#      # Check Docker base image updates in /app:
+#      - package-ecosystem: "docker"
+#        directory: "/app"
+#        schedule:
+#          interval: "weekly"
+#
+#      # Check Terraform provider updates in /terraform:
+#      - package-ecosystem: "terraform"
+#        directory: "/terraform"
+#        schedule:
+#          interval: "monthly"

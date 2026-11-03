@@ -1,0 +1,23 @@
+# ==============================================================================
+# Kubernetes Service Guide (k8s/base/service.yaml)
+# ==============================================================================
+# A Service provides an internal stable IP address and DNS name that load-balances
+# traffic across your running pod replicas.
+#
+# Structure to write:
+#
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: notification-gateway-service
+#   namespace: gateway
+#   labels:
+#     app: notification-gateway
+# spec:
+#   type: ClusterIP  # Internal cluster communication only; Ingress exposes it outside
+#   selector:
+#     app: notification-gateway  # Matches labels on the Deployment Pod template
+#   ports:
+#     - name: http
+#       port: 8000
+#       targetPort: 8000

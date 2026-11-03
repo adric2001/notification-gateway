@@ -1,0 +1,15 @@
+# ==============================================================================
+# Example Terraform Variables Template (terraform/terraform.tfvars.example)
+# ==============================================================================
+# Copy this file to 'terraform.tfvars' to override the default variable values.
+# IMPORTANT: 'terraform.tfvars' is ignored by Git in .gitignore to protect your secrets.
+
+aws_region     = "us-east-1"
+project_name   = "notification-gateway"
+instance_type  = "t3.small"
+ssh_key_name   = "my-aws-ssh-key"
+
+# Restrict SSH port 22 access strictly to your home or office IP address:
+# Check your current IP by visiting: https://checkip.amazonaws.com
+# Format must include /32 for a single IP address:
+allowed_ssh_ip = "203.0.113.50/32"

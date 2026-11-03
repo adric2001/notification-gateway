@@ -1,0 +1,130 @@
+# ==============================================================================
+# .gitignore
+# ==============================================================================
+# This file specifies intentionally untracked files that Git should ignore.
+# Files already tracked by Git are not affected.
+# Reference: https://git-scm.com/docs/gitignore
+
+# ------------------------------------------------------------------------------
+# Python & Bytecode
+# ------------------------------------------------------------------------------
+# Python compiles source code into bytecode (.pyc) for faster execution.
+# These should never be checked into version control.
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environments
+# Virtual environments contain isolated python binaries and packages.
+# Never commit virtual environments; use requirements.txt instead.
+venv/
+.venv/
+env/
+.env/
+ENV/
+
+# Testing & Coverage
+# Artifacts generated during test runs and coverage reports.
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+
+# Linters & Formatters
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# ------------------------------------------------------------------------------
+# Secrets & Environment Variables
+# ------------------------------------------------------------------------------
+# CRITICAL SECURITY RULE:
+# Never commit real credentials, API tokens, bot keys, or .env files.
+# Use template files like .env.example or secret.example.yaml instead.
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.id_rsa
+*.id_ed25519
+
+# ------------------------------------------------------------------------------
+# Terraform (Infrastructure as Code)
+# ------------------------------------------------------------------------------
+# Local .terraform directories contain installed provider plugins and modules.
+.terraform/
+.terraform.lock.hcl.backup
+
+# Terraform state files contain the real-time mapping of configuration to cloud
+# resources, and OFTEN CONTAIN PLAINTEXT SECRETS (database passwords, private keys).
+# Store remote state securely in AWS S3 with encryption and DynamoDB locking.
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+# Sensitive terraform variable definitions
+# Only commit terraform.tfvars.example with dummy values.
+terraform.tfvars
+*.auto.tfvars
+
+# Crash log files
+crash.log
+crash.*.log
+
+# ------------------------------------------------------------------------------
+# Ansible
+# ------------------------------------------------------------------------------
+# Retry files generated when playbooks fail
+*.retry
+
+# Sensitive Ansible vault passwords
+.vault_pass
+.vault_password
+
+# ------------------------------------------------------------------------------
+# Kubernetes & Helm
+# ------------------------------------------------------------------------------
+# Sensitive generated kubeconfig files
+kubeconfig
+kubeconfig.yaml
+*.kubeconfig
+
+# Actual decrypted secret manifests
+secret.yaml
+
+# ------------------------------------------------------------------------------
+# Operating System & IDE Artifacts
+# ------------------------------------------------------------------------------
+# macOS metadata
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors & IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

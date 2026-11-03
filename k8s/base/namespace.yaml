@@ -1,0 +1,13 @@
+# ==============================================================================
+# Kubernetes Namespace Guide (k8s/base/namespace.yaml)
+# ==============================================================================
+# Namespaces isolate resources inside a Kubernetes cluster (like folders for pods).
+#
+# Structure to write:
+#
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: gateway
+#   labels:
+#     app: notification-gateway
